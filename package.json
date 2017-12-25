@@ -1,0 +1,22 @@
+{
+  "name": "2017",
+  "version": "1.0.0",
+  "description": "2017 in Review",
+  "scripts": {
+    "dev": "x0 dev src/App.js -op 8080",
+    "build": "x0 build src/App.js -s -d . --cssLibrary='styled-components'",
+    "start": "serve ."
+  },
+  "author": "Lachlan Campbell",
+  "license": "MIT",
+  "devDependencies": {
+    "@compositor/x0": "^3.0.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rebass": "^1.0.4"
+  },
+  "dependencies": {
+    "palx": "^1.0.2",
+    "serve": "^6.4.3"
+  }
+}
