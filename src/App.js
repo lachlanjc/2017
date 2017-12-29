@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Provider, Banner, Container, Box, Heading, Text } from 'rebass'
+import { Provider, Container, Box, Flex, Heading, Text } from 'rebass'
 import styled from 'styled-components'
 import theme, { colors, mx } from './theme'
 
@@ -86,7 +86,12 @@ const Footnotes = Box.extend.attrs({
   }
 `
 
-const Slide = Banner.extend.attrs({ color: 'white', p: [2, 3, 4] })`
+const Slide = Flex.extend.attrs({
+  align: 'center',
+  justify: 'center',
+  color: 'white',
+  p: [2, 3, 4]
+})`
   height: 50vh;
   max-height: 100vh;
   text-align: center;
@@ -107,7 +112,7 @@ const Header = Slide.extend`
 `
 const Season = Slide.extend`
   min-height: 25vh !important;
-  height: 40vh !important;
+  max-height: 50vh !important;
 `
 const Spring = Season.extend`
   background-color: ${props => props.theme.colors.green[6]};
