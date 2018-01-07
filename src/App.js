@@ -1,22 +1,19 @@
 import React, { Fragment } from 'react'
-import {
-  Container,
-  Box,
-  Flex,
-  Heading,
-  Text,
-  mediaQueries
-} from '@hackclub/design-system'
+import { Box, Flex, Heading, Text, mediaQueries } from '@hackclub/design-system'
 import ThemeProvider from './ThemeProvider'
 import theme, { colors } from './theme'
 import styled from 'styled-components'
 
-const Article = Container.extend.attrs({ maxWidth: 36, p: 3 })`
+const Article = Box.withComponent('article').extend`
+  max-width: 48rem;
+  margin: auto;
+  padding: 1rem;
+
   > p {
     font-size: 1.25rem;
     line-height: 1.75;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   @supports (-webkit-initial-letter: 2) {
     .first_letter:first-letter {
@@ -26,6 +23,10 @@ const Article = Container.extend.attrs({ maxWidth: 36, p: 3 })`
       font-style: italic;
       padding-right: 0.75rem;
     }
+  }
+
+  a {
+    color: ${props => props.theme.colors.primary};
   }
 
   img {
@@ -63,25 +64,24 @@ const Article = Container.extend.attrs({ maxWidth: 36, p: 3 })`
       }
     }
   }
-`
 
-const Footnotes = Box.extend.attrs({
-  is: 'ol',
-  bg: 'smoke',
-  color: 'slate',
-  px: 4,
-  py: 3,
-  mx: [null, -4]
-})`
-  border-radius: .5rem;
-  word-break: break-word;
-  &:before {
-    content: 'Footnotes';
-    display: block;
-    font-weight: 700;
-    letter-spacing: .1em;
-    margin-bottom: .25rem;
-    text-transform: uppercase;
+  figure {
+    display: grid;
+    grid-gap: 1rem;
+    margin: 1rem -1rem;
+    ${mediaQueries[1]} {
+      margin: 2rem -4rem;
+    }
+    ${mediaQueries[2]} {
+      &.multiple {
+        margin: 3rem -12rem;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(512px, 1fr));
+      }
+      .portrait {
+        grid-row: 1 / span 2;
+      }
+    }
   }
 `
 
@@ -119,8 +119,8 @@ const Spring = Season.extend`
   background-color: ${props => props.theme.colors.green[6]};
   background-image: linear-gradient(
     -32deg,
-    ${props => props.theme.colors.lime[5]},
-    ${props => props.theme.colors.green[6]}
+    ${props => props.theme.colors.teal[6]},
+    ${props => props.theme.colors.green[7]}
   );
 `
 const Summer = Season.extend`
@@ -157,7 +157,7 @@ export default () => (
         <Heading.h1 f={[6, 7]} mb={2}>
           2017 in Review
         </Heading.h1>
-        <Heading.h2 f={[3, 4]} bold={false}>
+        <Heading.h2 f={[3, 4]} style={{ fontWeight: 'normal' }}>
           Lachlan Campbell – @lachlanjc
         </Heading.h2>
       </Container>
@@ -196,7 +196,7 @@ export default () => (
     </Article>
 
     <Footer color="slate" bg="smoke" align="center" f={2} pt={4} pb={5}>
-      Made with ♥️ by Lachlan Campbell, 2017.
+      Made with ♥️ by Lachlan Campbell.
     </Footer>
   </ThemeProvider>
 )
