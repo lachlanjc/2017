@@ -10,13 +10,14 @@
   "author": "Lachlan Campbell",
   "license": "MIT",
   "devDependencies": {
-    "@compositor/x0": "^3.0.2",
+    "@compositor/x0": "^3.0.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rebass": "^1.0.4"
   },
   "dependencies": {
+    "@hackclub/design-system": "0.0.1-3",
     "palx": "^1.0.2",
-    "serve": "^6.4.3"
+    "serve": "^6.4.4"
   }
 }
