@@ -153,13 +153,6 @@ const Footer = Box.withComponent('footer')
 
 export default () => (
   <Fragment>
-    <title>2017 in Review – @lachlanjc</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://gt-america-mjxkcyadka.now.sh/index.css"
-    />
-    <style dangerouslySetInnerHTML={{ __html: css }} />
     <ThemeProvider>
       <Header>
         <Container maxWidth={48 * 16}>

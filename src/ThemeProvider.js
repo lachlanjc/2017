@@ -1,21 +1,10 @@
 import React from 'react'
-import styled, {
-  ThemeProvider as StyledThemeProvider,
-  injectGlobal
-} from 'styled-components'
+import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from './theme'
 
-injectGlobal`
-* { box-sizing: border-box; }
-body {
-  line-height: 1.6;
-  margin: 0;
-}
-`
-
-export const Base = styled.div`
+export const Base = styled.main`
   font-family: ${props => props.theme.font};
-  line-height: 1.4;
+  line-height: 1.6;
   * {
     box-sizing: border-box;
   }
@@ -23,7 +12,7 @@ export const Base = styled.div`
 
 const ThemeProvider = props => (
   <StyledThemeProvider theme={theme}>
-    <Base {...props} />
+    <Base id="hello" {...props} />
   </StyledThemeProvider>
 )
 
