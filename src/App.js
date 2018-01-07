@@ -11,13 +11,12 @@ import ThemeProvider from './ThemeProvider'
 import theme, { colors } from './theme'
 import styled from 'styled-components'
 
-const Article = Container.extend.attrs({ p: 3 })`
+const Article = Container.extend.attrs({ maxWidth: 36, p: 3 })`
   > p {
     font-size: 1.25rem;
-    font-family: ${theme.serif};
     line-height: 1.75;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
   @supports (-webkit-initial-letter: 2) {
     .first_letter:first-letter {
@@ -33,43 +32,35 @@ const Article = Container.extend.attrs({ p: 3 })`
     width: 100%;
   }
 
-  h2, blockquote {
+  h2,
+  blockquote {
     font-style: italic;
     color: ${props => props.theme.colors.primary};
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1.5;
-    em { font-style: normal; }
+    em {
+      font-style: normal;
+    }
+  }
+  blockquote {
     position: relative;
-    &:before {
-      content: '';
-      left: -4rem;
+    p {
+      margin: 0.5rem 0;
+    }
+    :before {
+      content: '“';
+      left: -3rem;
+      top: -0.5rem;
+      font-size: 4rem;
       position: absolute;
-      font-size: 6rem;
       line-height: 1;
       color: ${props => props.theme.colors.smoke};
-    }
-    p { margin: .5rem 0; }
-  }
-
-  ${mediaQueries[1]} {
-    display: grid;
-    grid-template-columns: 1fr 42rem;
-    grid-column-gap: 1rem;
-    justify-content: center;
-    > div {
-      grid-column: 2;
-      margin: 1rem 0 1rem -8rem;
-    }
-    > p, > ol {
-      grid-column: 2;
-    }
-    h2, blockquote {
-      grid-column: 2;
-      margin-left: -8rem;
-    }
-    img {
-      grid-column: 1;
+      ${mediaQueries[1]} {
+        left: -4rem;
+        top: -1rem;
+        font-size: 6rem;
+      }
     }
   }
 `
@@ -94,7 +85,7 @@ const Footnotes = Box.extend.attrs({
   }
 `
 
-const Slide = Flex.extend.attrs({
+const Slide = Flex.withComponent('section').extend.attrs({
   align: 'center',
   justify: 'center',
   color: 'white',
@@ -102,19 +93,27 @@ const Slide = Flex.extend.attrs({
 })`
   height: 50vh;
   max-height: 100vh;
-  text-align: center;
-  text-shadow: 0 .125rem .5rem rgba(0,0,0,.125);
-  h1, h2 { font-weight: 800; }
+  h1 {
+    font-weight: 800;
+    line-height: 1.125;
+  }
 `
-const Header = Slide.extend`
-  min-height: 75vh;
-  background-image: url(https://user-images.githubusercontent.com/5074763/34448454-82874dd0-ecbb-11e7-99fc-47c5231a290e.JPG);
+const Header = Slide.withComponent('header').extend`
+  min-height: 80vh;
+  background-image: url(header.jpg);
   background-size: cover;
-  background-position: center 66%;
+  background-position: center;
+  text-shadow: 0 .125rem .5rem rgba(0,0,0,.25);
+  div {
+    background-color: rgba(0, 0, 0, .125);
+    box-shadow: 0 0 2rem 2rem rgba(0, 0, 0, .125);
+    border-radius: 8rem;
+  }
 `
 const Season = Slide.extend`
-  min-height: 25vh !important;
-  max-height: 50vh !important;
+  text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+  min-height: 20vh !important;
+  max-height: 33vh !important;
 `
 const Spring = Season.extend`
   background-color: ${props => props.theme.colors.green[6]};
@@ -152,57 +151,52 @@ const Winter = Season.extend`
 const Footer = Box.withComponent('footer')
 
 export default () => (
-  <Fragment>
-    <ThemeProvider>
-      <Header>
-        <Container maxWidth={48 * 16}>
-          <Heading.h1 f={[6, 7]}>2017 in Review</Heading.h1>
-          <Heading.h2 f={[3, 4]}>
-            <em>Lachlan Campbell – @lachlanjc</em>
-          </Heading.h2>
-        </Container>
-      </Header>
+  <ThemeProvider>
+    <Header>
+      <Container maxWidth={36} px={2}>
+        <Heading.h1 f={[6, 7]} mb={2}>
+          2017 in Review
+        </Heading.h1>
+        <Heading.h2 f={[3, 4]} bold={false}>
+          Lachlan Campbell – @lachlanjc
+        </Heading.h2>
+      </Container>
+    </Header>
 
-      <Article py={[4, 5]}>
-        <blockquote>
-          <p>2017 was a crazy year.</p>
-        </blockquote>
-      </Article>
+    <Article py={[4, 5]}>
+      <p />
+    </Article>
 
-      <Spring>
-        <Heading f={6}>Spring</Heading>
-      </Spring>
-      <Article>
-        <p />
-      </Article>
+    <Spring>
+      <Heading.h1 f={6}>Spring</Heading.h1>
+    </Spring>
+    <Article>
+      <p />
+    </Article>
 
-      <Summer>
-        <Heading f={6}>Summer</Heading>
-      </Summer>
-      <Article>
-        <p />
-      </Article>
+    <Summer>
+      <Heading.h1 f={6}>Summer</Heading.h1>
+    </Summer>
+    <Article>
+      <p />
+    </Article>
 
-      <Fall>
-        <Heading f={6}>Fall</Heading>
-      </Fall>
-      <Article>
-        <p />
-      </Article>
+    <Fall>
+      <Heading.h1 f={6}>Fall</Heading.h1>
+    </Fall>
+    <Article>
+      <p />
+    </Article>
 
-      <Winter>
-        <Heading f={6}>Winter</Heading>
-      </Winter>
-      <Article>
-        <p />
-      </Article>
-      <Footer color="slate" bg="smoke" align="center" f={2} pt={4} pb={5}>
-        Made with ♥️ by Lachlan Campbell, 2017.
-      </Footer>
-    </ThemeProvider>
-  </Fragment>
+    <Winter>
+      <Heading.h1 f={6}>Winter</Heading.h1>
+    </Winter>
+    <Article>
+      <p />
+    </Article>
+
+    <Footer color="slate" bg="smoke" align="center" f={2} pt={4} pb={5}>
+      Made with ♥️ by Lachlan Campbell, 2017.
+    </Footer>
+  </ThemeProvider>
 )
-
-const css = `
-*{box-sizing:border-box}body{line-height:1.5;margin:0}a{color:${colors.primary}}
-`
