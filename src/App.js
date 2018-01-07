@@ -1,7 +1,15 @@
 import React, { Fragment } from 'react'
-import { Provider, Container, Box, Flex, Heading, Text } from 'rebass'
+import {
+  Container,
+  Box,
+  Flex,
+  Heading,
+  Text,
+  mediaQueries
+} from '@hackclub/design-system'
+import ThemeProvider from './ThemeProvider'
+import theme, { colors } from './theme'
 import styled from 'styled-components'
-import theme, { colors, mx } from './theme'
 
 const Article = Container.extend.attrs({ p: 3 })`
   > p {
@@ -14,7 +22,7 @@ const Article = Container.extend.attrs({ p: 3 })`
   @supports (-webkit-initial-letter: 2) {
     .first_letter:first-letter {
       -webkit-initial-letter: 2;
-      color: ${colors.primary};
+      color: ${props => props.theme.colors.primary};
       font-weight: bold;
       font-style: italic;
       padding-right: 0.75rem;
@@ -27,7 +35,7 @@ const Article = Container.extend.attrs({ p: 3 })`
 
   h2, blockquote {
     font-style: italic;
-    color: ${colors.primary};
+    color: ${props => props.theme.colors.primary};
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1.5;
@@ -39,12 +47,12 @@ const Article = Container.extend.attrs({ p: 3 })`
       position: absolute;
       font-size: 6rem;
       line-height: 1;
-      color: ${colors.smoke};
+      color: ${props => props.theme.colors.smoke};
     }
     p { margin: .5rem 0; }
   }
 
-  ${mx[1]} {
+  ${mediaQueries[1]} {
     display: grid;
     grid-template-columns: 1fr 42rem;
     grid-column-gap: 1rem;
@@ -100,15 +108,9 @@ const Slide = Flex.extend.attrs({
 `
 const Header = Slide.extend`
   min-height: 75vh;
-  background-color: ${props => props.theme.colors.blue[6]};
-  background-image: linear-gradient(
-    16deg,
-    ${props => props.theme.colors.cyan[6]},
-    ${props => props.theme.colors.lime[6]},
-    ${props => props.theme.colors.yellow[6]},
-    ${props => props.theme.colors.orange[6]},
-    ${props => props.theme.colors.red[6]}
-  );
+  background-image: url(https://user-images.githubusercontent.com/5074763/34448454-82874dd0-ecbb-11e7-99fc-47c5231a290e.JPG);
+  background-size: cover;
+  background-position: center 66%;
 `
 const Season = Slide.extend`
   min-height: 25vh !important;
@@ -147,29 +149,24 @@ const Winter = Season.extend`
   );
 `
 
-const Footer = Box.extend.attrs({
-  is: 'footer',
-  color: 'slate',
-  bg: 'smoke',
-  f: 2,
-  pt: 4,
-  pb: 5
-})`text-align: center;`
+const Footer = Box.withComponent('footer')
 
 export default () => (
   <Fragment>
     <title>2017 in Review – @lachlanjc</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://gt-america-mjxkcyadka.now.sh/index.css"
+    />
     <style dangerouslySetInnerHTML={{ __html: css }} />
-    <Provider theme={theme}>
+    <ThemeProvider>
       <Header>
         <Container maxWidth={48 * 16}>
-          <Heading is="h1" f={[6, 7]}>
-            2017 in Review
-          </Heading>
-          <Heading f={[3, 4]}>
+          <Heading.h1 f={[6, 7]}>2017 in Review</Heading.h1>
+          <Heading.h2 f={[3, 4]}>
             <em>Lachlan Campbell – @lachlanjc</em>
-          </Heading>
+          </Heading.h2>
         </Container>
       </Header>
 
@@ -206,20 +203,13 @@ export default () => (
       <Article>
         <p />
       </Article>
-      <Footer>Made with ♥️ by Lachlan Campbell, 2017.</Footer>
-    </Provider>
+      <Footer color="slate" bg="smoke" align="center" f={2} pt={4} pb={5}>
+        Made with ♥️ by Lachlan Campbell, 2017.
+      </Footer>
+    </ThemeProvider>
   </Fragment>
 )
 
 const css = `
 *{box-sizing:border-box}body{line-height:1.5;margin:0}a{color:${colors.primary}}
-@font-face{font-family:Slack-Averta;font-style:normal;font-weight:400;src:url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-regular.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-regular.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Averta;font-style:normal;font-weight:700;src:url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-bold.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-bold.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Averta;font-style:normal;font-weight:900;src:url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-black.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-black.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Averta;font-style:italic;font-weight:400;src:url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-regular-italic.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/averta/averta-regular-italic.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Tiempos;font-style:normal;font-weight:400;src:url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-regular.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-regular.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Tiempos;font-style:italic;font-weight:400;src:url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-text/tiempos-text-regular-italic.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-text/tiempos-text-regular-italic.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Tiempos;font-style:normal;font-weight:500;src:url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-semibold.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-semibold.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Tiempos;font-style:italic;font-weight:500;src:url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-text/tiempos-text-semibold-italic.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-text/tiempos-text-semibold-italic.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
-@font-face{font-family:Slack-Tiempos;font-style:normal;font-weight:700;src:url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-bold.woff2) format('woff2'),url(https://a.slack-edge.com/436da/marketing/fonts/tiempos-headline/tiempos-headline-bold.woff) format('woff');unicode-range:U+0000-F8FE,U+F900-FFFF}
 `
