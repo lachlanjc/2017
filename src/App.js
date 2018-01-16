@@ -166,7 +166,7 @@ export default () => (
       <Text className="first">
         2017 has been intensely <em>full</em> and 2018 looks even bigger. I’ve
         made an attempt to chronicle some of my more significant adventures
-        here, if you’re interested in my life!
+        here.
       </Text>
     </Article>
 
@@ -204,10 +204,9 @@ export default () => (
       <p data-before="🌈">
         On a much more personal note—since September 2016 I had been coming to
         the realization that I’m not straight. Though I live in a very
-        progressive/accepting place and family, it was nonetheless
-        internally-tumultuous for me to share this. Over the spring, I started
-        coming out as queer to my parents and friends to their wonderful love
-        and support.
+        progressive/accepting place and family, it was nonetheless internally
+        tumultuous for me to share this. Over the spring, I started coming out
+        as queer to my parents and friends to their wonderful love and support.
       </p>
 
       <p>
@@ -321,10 +320,10 @@ export default () => (
       </p>
 
       <p>
-        2017 has unquestionably been the most foundational in my life so far.
-        Though the year has been, for the most part, happy, you can never know
-        what you’ll regret in the future, if the way you spend your time remains
-        effective over the long-term, if you’re setting yourself up for failure
+        2017 has unquestionably been the most foundational year in my life so
+        far. The year has been, for the most part, happy. I can never know what
+        I’ll regret in the future, if the way I spend my time will remain
+        effective over the long-term, if I’m not setting myself up for ”success”
         in whatever sense. But while we wait, on we must march. There’s always
         another year waiting.
       </p>
