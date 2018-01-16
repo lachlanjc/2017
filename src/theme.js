@@ -2,7 +2,6 @@ import { theme } from '@hackclub/design-system'
 import palx from 'palx'
 
 const primary = '#0069ff'
-const accent = '#ff0069'
 const palette = palx(primary)
 
 export const greys = {
@@ -14,18 +13,8 @@ export const greys = {
   white: '#ffffff'
 }
 
-export const brand = {
-  primary,
-  accent,
-  success: palette.teal[5],
-  info: palette.blue[5],
-  warning: palette.orange[5],
-  error: palette.red[7],
-  muted: greys.silver
-}
-
 export const colors = {
-  ...brand,
+  primary,
   ...greys,
   ...palette
 }
