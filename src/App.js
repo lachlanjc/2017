@@ -275,12 +275,12 @@ export default () => (
       </p>
 
       <p>
-        My learning to code (starting in 2012-13) has been one of the most
-        defining processes of my life, as it has given me a creative outlet and
-        a real voice. I spent nearly 500 hours coding in 2017, working on dozens
-        of projects. This fall, I’ve spent hundreds of hours on Hack Club,
-        working to empower thousands of students around the world with the same
-        amazing skill I’ve been so privileged to acquire.
+        Learning to code (starting in 2012-13) has been one of the most defining
+        processes of my life, as it has given me a creative outlet and a real
+        voice. I spent nearly 500 hours coding in 2017, working on dozens of
+        projects. This fall, I’ve spent hundreds of hours on Hack Club, working
+        to empower thousands of students around the world with the same skill
+        I’ve been so privileged to acquire.
       </p>
 
       <p>
@@ -293,7 +293,7 @@ export default () => (
         after the devastating mass shooting in Orlando in summer 2016, and{' '}
         <a href="http://www.usecalltoaction.com">Call to Action</a>.) These
         sites are just the start of a far-larger project I’m working on in
-        spring 2018, which you will hear about on Twitter :)
+        spring 2018, which you will hear about on Twitter!
       </p>
 
       <figure>
@@ -302,9 +302,11 @@ export default () => (
 
       <p data-before="🌈">
         I don’t have a long tale to tell here, but more months into my journey
-        of discovering my identity, I came out to the people in my life again,
-        as non-binary. I use they/them pronouns. Everyone’s been supportive, and
-        it’s been awesome.
+        of discovering my identity, I came out again, as non-binary. For the
+        most part, the people in my life have been supportive, with exceptions.
+        It’s been surprising how unaccustomed people are to they/them pronouns.
+        Society is making amazing progress in accepting people, but there’s
+        still so far to go.
       </p>
     </Article>
 
