@@ -1,5 +1,12 @@
 import React, { Fragment } from 'react'
-import { Box, Flex, Heading, Text, mediaQueries } from '@hackclub/design-system'
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Container,
+  mediaQueries
+} from '@hackclub/design-system'
 import ThemeProvider from './ThemeProvider'
 import theme, { colors } from './theme'
 import styled from 'styled-components'
@@ -256,7 +263,7 @@ export default () => (
         work on the product.
       </p>
 
-      <figure class="multiple">
+      <figure className="multiple">
         <img src="fall/pennapps_team.jpg" />
         <img src="fall/pennapps_working.jpg" />
       </figure>
