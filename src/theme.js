@@ -31,6 +31,6 @@ export const colors = {
 }
 
 theme.colors = colors
-theme.font = 'GT-America, -apple-system, BlinkMacSystemFont, Roboto, sans-serif'
+theme.font = '-apple-system, BlinkMacSystemFont, Roboto, sans-serif'
 
 export default theme
