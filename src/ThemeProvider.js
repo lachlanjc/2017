@@ -1,19 +1,20 @@
-import React from 'react'
-import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import React, { Fragment } from 'react'
+import { ThemeProvider as Root, injectGlobal } from 'styled-components'
 import theme from './theme'
 
-export const Base = styled.main`
-  font-family: ${props => props.theme.font};
-  line-height: 1.6;
-  * {
-    box-sizing: border-box;
+injectGlobal`
+  body {
+    font-family: ${theme.font} !important;
+    line-height: 1.5;
   }
 `
 
 const ThemeProvider = props => (
-  <StyledThemeProvider theme={theme}>
-    <Base id="hello" {...props} />
-  </StyledThemeProvider>
+  <Root
+    theme={theme}
+    {...props}
+    children={<Fragment>{props.children}</Fragment>}
+  />
 )
 
 export default ThemeProvider
