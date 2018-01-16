@@ -12,7 +12,7 @@ import theme, { colors } from './theme'
 import styled from 'styled-components'
 
 const Article = Box.withComponent('article').extend`
-  max-width: 48rem;
+  max-width: 44rem;
   margin: auto;
   padding: 1rem;
 
@@ -21,14 +21,26 @@ const Article = Box.withComponent('article').extend`
     line-height: 1.75;
     margin-top: 1rem;
     margin-bottom: 1rem;
-  }
-  @supports (-webkit-initial-letter: 2) {
-    .first_letter:first-letter {
-      -webkit-initial-letter: 2;
-      color: ${props => props.theme.colors.primary};
-      font-weight: bold;
-      font-style: italic;
-      padding-right: 0.75rem;
+    &.first {
+      font-size: 1.5rem;
+    }
+    &[data-before] {
+      position: relative;
+      margin-top: 2rem;
+      :before {
+        content: attr(data-before);
+        left: 0;
+        top: -4rem;
+        font-size: 3rem;
+        position: absolute;
+        line-height: 1;
+        ${mediaQueries[1]} {
+          margin-top: 1rem;
+          left: -4rem;
+          top: 0;
+          font-size: 3rem;
+        }
+      }
     }
   }
 
@@ -49,26 +61,6 @@ const Article = Box.withComponent('article').extend`
     line-height: 1.5;
     em {
       font-style: normal;
-    }
-  }
-  blockquote {
-    position: relative;
-    p {
-      margin: 0.5rem 0;
-    }
-    :before {
-      content: '“';
-      left: -3rem;
-      top: -0.5rem;
-      font-size: 4rem;
-      position: absolute;
-      line-height: 1;
-      color: ${props => props.theme.colors.smoke};
-      ${mediaQueries[1]} {
-        left: -4rem;
-        top: -1rem;
-        font-size: 6rem;
-      }
     }
   }
 
@@ -118,7 +110,7 @@ const Header = Slide.withComponent('header').extend`
   }
 `
 const Season = Slide.extend`
-  text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.125);
   min-height: 20vh !important;
   max-height: 33vh !important;
 `
@@ -171,10 +163,11 @@ export default () => (
     </Header>
 
     <Article py={[4, 5]}>
-      <p>
-        2017 has unquestionably been the most foundational in my life so far. An
-        insane amount happened this year and I’ve changed dramatically.
-      </p>
+      <Text className="first">
+        2017 has been intensely <em>full</em> and 2018 looks even bigger. I’ve
+        made an attempt to chronicle some of my more significant adventures
+        here, if you’re interested in my life!
+      </Text>
     </Article>
 
     <Spring>
@@ -187,20 +180,20 @@ export default () => (
         <a href="https://hackclub.com">Hack Club</a>, a network of high school
         coding clubs all around the world. Over about a dozen meetings, over 40
         students came and built their first websites. Hack Club continues to be
-        an extremely fun side project, and I relaunched it in the fall.
+        an extremely rewarding side project, and I relaunched it in the fall.
       </p>
 
       <figure>
         <img src="spring/hackclub.jpg" />
       </figure>
 
-      <p>
+      <p data-before="✈️">
         In March, I won a diversity scholarship from Facebook to go to
         ReactConf. It was my first tech conference and my first time in
         California (San Francisco + Santa Clara). I met Zach Latta, Mark Otto,
         Brian Lovin, Bryn Jackson, Max Stoiber, Chris Lloyd, and the Airbnb
-        React team, as well as tons of other attendees at the conference. It was
-        ridiculously fun.
+        React team, as well as tons of other attendees at the conference, and
+        learned a ton about JavaScript. The trip was ridiculously fun.
       </p>
 
       <figure className="multiple">
@@ -208,13 +201,13 @@ export default () => (
         <img src="spring/reactconf.jpg" />
       </figure>
 
-      <p>
-        On a much more personal note, since September 2016 I had been coming to
+      <p data-before="🌈">
+        On a much more personal note—since September 2016 I had been coming to
         the realization that I’m not straight. Though I live in a very
-        progressive and accepting place and family, it was nonetheless an
-        enormously internally-tumultuous shift for me to make. Over March and
-        April I started coming out to my parents and friends to their wonderful
-        love and support.
+        progressive/accepting place and family, it was nonetheless
+        internally-tumultuous for me to share this. Over the spring, I started
+        coming out as queer to my parents and friends to their wonderful love
+        and support.
       </p>
 
       <p>
@@ -233,7 +226,7 @@ export default () => (
       <Heading.h1 f={6}>Summer</Heading.h1>
     </Summer>
     <Article>
-      <p>
+      <p data-before="🏰">
         This year I had hands-down the best summer yet. I moved to Providence,
         RI to attend RISD’s Pre-College program studying industrial design. It
         was my first time living away from home (6 weeks), and the RISD program
@@ -276,43 +269,43 @@ export default () => (
         <a href="https://hackclub.com/">hackclub.com</a>! (Like everything we
         do, it’s <a href="https://github.com/hackclub/site">open source</a>.)
         Since then, I’ve continued working on our marketing website, application
-        system, and built a{' '}
-        <a href="https://github.com/hackclub/design-system">design system</a>{' '}
-        for our websites.
+        flow, and built a{' '}
+        <a href="https://design.hackclub.com">design system</a> for our
+        websites. I won the Congressional App Challenge in PA-05 for the new
+        site.
       </p>
 
       <p>
         My learning to code (starting in 2012-13) has been one of the most
         defining processes of my life, as it has given me a creative outlet and
         a real voice. I spent nearly 500 hours coding in 2017, working on dozens
-        of projects. This fall, I’ve spent dozens of hours on Hack Club, as
+        of projects. This fall, I’ve spent hundreds of hours on Hack Club,
         working to empower thousands of students around the world with the same
-        amazing skill is deeply rewarding.
+        amazing skill I’ve been so privileged to acquire.
       </p>
 
       <p>
         As a queer, progressive, environmentally-conscious person, the last year
-        of US politics has proven alarming. As part of my own resistance to the
-        disturbing trends in this country, I’ve helped make tools to protest. In
-        late September, I launched{' '}
-        <a href="https://lachlanjc.me/fossilfunded">Fossil Funded</a>, a website
-        for seeing the US Congess’ funding from fossil fuel companies and making
-        contacting your Representative incredibly simple. (This follows{' '}
+        of US politics has proven disturbing. However, in late September, I
+        launched <a href="https://lachlanjc.me/fossilfunded">Fossil Funded</a>,
+        a website for seeing the US Congess’ funding from fossil fuel companies
+        and making contacting your Representative super simple. (This follows{' '}
         <a href="https://lachlanjc.me/nrafunded">NRA Funded</a>, which I built
         after the devastating mass shooting in Orlando in summer 2016, and{' '}
         <a href="http://www.usecalltoaction.com">Call to Action</a>.) These
         sites are just the start of a far-larger project I’m working on in
-        spring 2018, which you will hear lots about :)
+        spring 2018, which you will hear about on Twitter :)
       </p>
 
       <figure>
         <img src="fall/meadow.jpg" />
       </figure>
 
-      <p>
-        More months into my journey of discovering my identity, I came out
-        again, as non-binary. I use they/them pronouns and identify as
-        greygender. Everyone’s support has been wonderfully gratifying.
+      <p data-before="🌈">
+        I don’t have a long tale to tell here, but more months into my journey
+        of discovering my identity, I came out to the people in my life again,
+        as non-binary. I use they/them pronouns. Everyone’s been supportive, and
+        it’s been awesome.
       </p>
     </Article>
 
@@ -320,21 +313,25 @@ export default () => (
       <Heading.h1 f={6}>Year in Review</Heading.h1>
     </Winter>
     <Article>
-      <p>
+      <p data-before="💕">
         This year I formed a number of deep friendships that have been
         invaluable in keeping me happy and healthy. Shoutout to Ethan, Lena,
-        Dan, Ashley, Patrick, Zoë, and all the other wonderful people who
+        Dan, Ashley, Zoë, Patrick, and all the other wonderful people who
         support and spend time with me.
       </p>
 
       <p>
-        2017 has been intensely <em>full</em>, and I can only expect 2018 to be
-        even more so. It’s been overwhelmingly a happy time, even as
+        2017 has unquestionably been the most foundational in my life so far.
+        Though the year has been, for the most part, happy, you can never know
+        what you’ll regret in the future, if the way you spend your time remains
+        effective over the long-term, if you’re setting yourself up for failure
+        in whatever sense. But while we wait, on we must march. There’s always
+        another year waiting.
       </p>
     </Article>
 
     <Footer color="slate" bg="smoke" align="center" f={2} pt={4} pb={5}>
-      Made with ♥️ by Lachlan Campbell.
+      Made with ♥️ by Lachlan Campbell
     </Footer>
   </ThemeProvider>
 )
